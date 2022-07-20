@@ -18,7 +18,6 @@ var {
 } = require("@handlebars/allow-prototype-access");
 
 var indexRouter = require("./routes/index");
-var userRouter = require("./routes/user");
 
 var app = express();
 
@@ -61,8 +60,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use("/user", userRouter);
-app.use("/", indexRouter);
+indexRouter(app);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
