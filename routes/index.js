@@ -1,9 +1,9 @@
 var usersRouter = require("./user");
-var cartsRouter = require("./cart");
+var productsRouter = require("./product");
 
 function indexRouter(app) {
   app.use("/user", usersRouter);
-  app.use("/", cartsRouter);
+  app.use("/", productsRouter);
 }
 
 module.exports = indexRouter;

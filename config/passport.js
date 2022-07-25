@@ -25,7 +25,7 @@ passport.use(
       req
         .checkBody("password", "Invalid password")
         .notEmpty()
-        .isLength({ min: 4 });
+        .isLength({ min: 8 });
       var errors = req.validationErrors();
       if (errors) {
         var messages = [];

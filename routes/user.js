@@ -12,12 +12,12 @@ router.get("/logout", userController.isLoggedIn, userController.userLogout);
 
 router.use("/", userController.notLoggedIn, userController.userNotLoggedIn);
 
-router.post("/signup", userController.userSignupPassport);
-
 router.get("/signup", userController.userSignup);
 
-router.post("/signin", userController.userSigninPassport);
+router.post("/signup", userController.userSignupPassport);
 
 router.get("/signin", userController.userSignin);
+
+router.post("/signin", userController.userSigninPassport);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 {
-  "name": "Assignment",
+  "name": "assignment",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -19,7 +19,7 @@
     "express-validator": "^5.3.1",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
-    "mongoose": "^6.4.4",
+    "mongoose": "^6.4.6",
     "morgan": "~1.9.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"

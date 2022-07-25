@@ -21,7 +21,8 @@ var indexRouter = require("./routes/index");
 
 var app = express();
 
-require("./config/dbConnect");
+var dbConnect = require("./config/dbConnect");
+dbConnect.connect();
 require("./config/passport");
 
 // view engine setup
@@ -31,6 +32,11 @@ app.engine(
     handlebars: allowInsecurePrototypeAccess(Handlebars),
     defaultLayout: "layout",
     extname: ".hbs",
+    helpers: {
+      getOneImage(image) {
+        return image[0];
+      },
+    },
   })
 );
 app.set("view engine", ".hbs");
@@ -42,17 +48,17 @@ app.use(validator());
 app.use(cookieParser());
 app.use(
   session({
-    secret: "123456",
+    secret: "DOANMANHQUY",
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
-    cookie: { maxAge: 180 * 60 * 1000 },
+    cookie: { maxAge: 180 * 60 * 1000 }, //180p
   })
 );
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.use(function (req, res, next) {
   res.locals.login = req.isAuthenticated();

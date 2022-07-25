@@ -1,10 +1,21 @@
 var User = require("../models/user");
-
+var Order = require("../models/order");
+var Cart = require("../models/cart");
 var passport = require("passport");
 
 class UserController {
   userProfile(req, res, next) {
-    res.render("user/profile");
+    Order.find({ user: req.user }, function (err, orders) {
+      if (err) {
+        return res.write("Error!");
+      }
+      var cart;
+      orders.forEach(function (order) {
+        cart = new Cart(order.cart);
+        order.items = cart.generateArray();
+      });
+      res.render("user/profile", { orders: orders });
+    });
   }
 
   userLogout(req, res, next) {
@@ -55,7 +66,7 @@ class UserController {
     if (req.isAuthenticated()) {
       return next();
     }
-    res.redirect("/");
+    res.redirect("/user/signin");
   }
 
   notLoggedIn(req, res, next) {

@@ -1,1 +1,56 @@
-<h1>User Profile</h1>
+{{> header}}
+
+<div class="p-t-30">
+    <h3 class="ltext-103 cl5" style="text-align: center;">
+        My Orders
+    </h3>
+</div>
+
+<div class="bg0 p-t-75 p-b-85">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+                <div class="m-l-25 m-r--38 m-lr-0-xl">
+                    <div class="wrap-table-shopping-cart m-b-10">
+                        <table class="table-shopping-cart">
+                            <tr class="table_head">
+                                <th class="column-1">Product</th>
+                                <th class="column-2"></th>
+                                <th class="column-3">Price</th>
+                                <th class="column-4">Quantity</th>
+                                <th class="column-5">Total</th>
+                            </tr>
+                        </table>
+                    </div>
+                    {{#each orders}}
+                    <div class="wrap-table-shopping-cart m-b-10">
+                        <table class="table-shopping-cart">
+                            {{#each this.items}}
+                            <tr class="table_row">
+                                <td class="column-1">
+                                    <div class="how-itemcart1">
+                                        <img src="{{getOneImage
+                                            this.item.imagePath}}" alt="IMG">
+                                    </div>
+                                </td>
+                                <td class="column-2">{{this.item.title}}</td>
+                                <td class="column-3">${{this.item.price}}</td>
+                                <td class="column-4">{{this.qty}}</td>
+                                <td class="column-5">${{this.price}}</td>
+                            </tr>
+                            {{/each}}
+                        </table>
+
+                        <div class="t-p p-r-10">
+                            <strong>Total Price:
+                                ${{this.cart.totalPrice}}</strong>
+                        </div>
+
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer}}
